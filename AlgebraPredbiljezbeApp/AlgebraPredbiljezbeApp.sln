@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgebraPredbiljezbeApp", "AlgebraPredbiljezbeApp\AlgebraPredbiljezbeApp.csproj", "{F34B402D-24CC-468B-8CA1-F747AEAB9856}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F34B402D-24CC-468B-8CA1-F747AEAB9856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F34B402D-24CC-468B-8CA1-F747AEAB9856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F34B402D-24CC-468B-8CA1-F747AEAB9856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F34B402D-24CC-468B-8CA1-F747AEAB9856}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F4677EB-485E-4A3B-AE55-FF8A54E38C41}
+	EndGlobalSection
+EndGlobal
