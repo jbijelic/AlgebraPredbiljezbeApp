@@ -6,21 +6,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AlgebraPredbiljezbeApp.Models;
+using AlgebraPredbiljezbeApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace AlgebraPredbiljezbeApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly aspnetAlgebraPredbiljezbeAppD8A763C64D0E4A4EBB4118DBF6243A5DContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public string Username { get; set; }
+
+        public HomeController(aspnetAlgebraPredbiljezbeAppD8A763C64D0E4A4EBB4118DBF6243A5DContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string naziv)
         {
-            return View();
+            return View(await _context.Seminar.Where(x => x.Naziv.Contains(naziv) || naziv == null).ToListAsync());
         }
 
         public IActionResult Privacy()
@@ -32,6 +36,41 @@ namespace AlgebraPredbiljezbeApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public async Task<IActionResult> Odaberi(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var seminar = await _context.Seminar.FindAsync(id);
+            if (seminar == null)
+            {
+                return NotFound();
+            }
+
+            Predbiljezba predbiljezba = new Predbiljezba();
+            predbiljezba.SeminarId = id;
+            predbiljezba.Seminar = seminar;
+
+            return View(predbiljezba);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Datum,Ime,Prezime,Adresa,Email,Telefon,SeminarId,Status")] Predbiljezba predbiljezba)
+        {
+            if (ModelState.IsValid)
+            {
+                predbiljezba.Datum = DateTime.Now;
+
+                _context.Add(predbiljezba);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(predbiljezba);
         }
     }
 }
