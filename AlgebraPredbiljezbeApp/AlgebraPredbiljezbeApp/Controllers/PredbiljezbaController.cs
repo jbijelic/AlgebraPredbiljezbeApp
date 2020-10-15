@@ -11,9 +11,9 @@ namespace AlgebraPredbiljezbeApp.Controllers
 {
     public class PredbiljezbaController : Controller
     {
-        aspnetAlgebraPredbiljezbeAppD8A763C64D0E4A4EBB4118DBF6243A5DContext _context { get; set; }
+        ApplicationDbContext _context { get; set; }
 
-        public PredbiljezbaController(aspnetAlgebraPredbiljezbeAppD8A763C64D0E4A4EBB4118DBF6243A5DContext context)
+        public PredbiljezbaController(ApplicationDbContext context)
         {
             _context = context;
         }

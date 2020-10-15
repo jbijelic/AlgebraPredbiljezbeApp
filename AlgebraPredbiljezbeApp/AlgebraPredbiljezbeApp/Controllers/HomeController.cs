@@ -13,18 +13,18 @@ namespace AlgebraPredbiljezbeApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly aspnetAlgebraPredbiljezbeAppD8A763C64D0E4A4EBB4118DBF6243A5DContext _context;
+        private readonly ApplicationDbContext _context;
 
         public string Username { get; set; }
 
-        public HomeController(aspnetAlgebraPredbiljezbeAppD8A763C64D0E4A4EBB4118DBF6243A5DContext context)
+        public HomeController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         public async Task<IActionResult> Index(string naziv)
         {
-            return View(await _context.Seminar.Where(x => x.Naziv.Contains(naziv) || naziv == null).ToListAsync());
+            return View(await _context.Seminar.Where(x => x.Naziv.Contains(naziv) || naziv == null && x.Popunjen == false).ToListAsync());
         }
 
         public IActionResult Privacy()

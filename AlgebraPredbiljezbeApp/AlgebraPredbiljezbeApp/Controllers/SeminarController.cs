@@ -11,10 +11,10 @@ namespace AlgebraPredbiljezbeApp.Controllers
 {
     public class SeminarController : Controller
     {
-        aspnetAlgebraPredbiljezbeAppD8A763C64D0E4A4EBB4118DBF6243A5DContext _context { get; set; }
+        ApplicationDbContext _context { get; set; }
 
 
-        public SeminarController(aspnetAlgebraPredbiljezbeAppD8A763C64D0E4A4EBB4118DBF6243A5DContext context)
+        public SeminarController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace AlgebraPredbiljezbeApp.Controllers
         // GET: Seminar
         public async Task<IActionResult> Index(string naziv)
         {
-            return View(await _context.Seminar.Where(x => x.Naziv.Contains(naziv) || naziv == null).ToListAsync());
+            return View(await _context.Seminar.Include(y => y.Predbiljezba).Where(x => x.Naziv.Contains(naziv) || naziv == null).ToListAsync());
         }
 
         // GET: Seminar/Details/5

@@ -28,9 +28,6 @@ namespace AlgebraPredbiljezbeApp
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<aspnetAlgebraPredbiljezbeAppD8A763C64D0E4A4EBB4118DBF6243A5DContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
